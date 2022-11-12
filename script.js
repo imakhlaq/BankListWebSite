@@ -54,6 +54,7 @@ document.addEventListener('keydown', function (e) {
 //   });
 // });
 
+/*
 // bubbling
 
 const randomNum = (min, max) =>
@@ -62,12 +63,28 @@ const randomNum = (min, max) =>
 const randomColor = () =>
   `rgb(${randomNum(0, 255)},${randomNum(0, 255)},${randomNum(0, 255)})`;
 
+// link
 document.querySelector('.nav__link').addEventListener('click', function (e) {
   this.style.backgroundColor = randomColor();
 });
+//links parent
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   this.style.backgroundColor = randomColor();
 });
+//parent nav
 document.querySelector('.nav').addEventListener('click', function (e) {
   this.style.backgroundColor = randomColor();
+});
+*/
+
+// event deligation
+const nav = document.querySelector('.nav__links');
+
+nav.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
 });
