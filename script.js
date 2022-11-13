@@ -97,10 +97,15 @@ parentOption.addEventListener('click', e => {
   //making sure that even i click on span elemnet it registers as ckick on parent element
   const clickedEl = e.target.closest('.operations__tab');
 
-  console.log(clickedEl);
-  // //removing default hover
-  // allOptions.forEach(option =>
-  //   option.classList.remove('operations__tab--active')
-  // );
-  // //adding hover to clicked element
+  //removing default hover
+  allOptions.forEach(option =>
+    option.classList.remove('operations__tab--active')
+  );
+  //adding hover to clicked element
+
+  //making sure if clicked on the parent element nothing happend
+  // if element is not clickedel then return
+  if (!clickedEl) return;
+
+  clickedEl.classList.add('operations__tab--active');
 });
