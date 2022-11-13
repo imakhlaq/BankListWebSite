@@ -89,7 +89,7 @@ nav.addEventListener('click', function (e) {
   }
 });
 
-//cpmponent
+//component
 const parentOption = document.querySelector('.operations__tab-container');
 const allOptions = document.querySelectorAll('.operations__tab');
 const info = document.querySelectorAll('.operations__content');
@@ -119,3 +119,21 @@ parentOption.addEventListener('click', e => {
   );
   dataToShow.classList.add('operations__content--active');
 });
+
+//fade effect
+const navCon = document.querySelector('.nav');
+
+const fadeAni = function (e) {
+  //current clicked element
+  const clicked = e.target;
+  const siblings = clicked.closest('.nav').querySelectorAll('.nav__link');
+  if (e.target != navCon) {
+    siblings.forEach(link => {
+      if (link !== clicked) link.style.opacity = this;
+    });
+    const logo = document.querySelector('.nav__logo');
+    logo.style.opacity = this;
+  }
+};
+navCon.addEventListener('mouseover', fadeAni.bind(0.5));
+navCon.addEventListener('mouseout', fadeAni.bind(1));
