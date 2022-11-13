@@ -92,10 +92,15 @@ nav.addEventListener('click', function (e) {
 //cpmponent
 const parentOption = document.querySelector('.operations__tab-container');
 const allOptions = document.querySelectorAll('.operations__tab');
+const info = document.querySelectorAll('.operations__content');
 
 parentOption.addEventListener('click', e => {
   //making sure that even i click on span elemnet it registers as ckick on parent element
   const clickedEl = e.target.closest('.operations__tab');
+
+  //making sure if clicked on the parent element nothing happend
+  // if element is not clickedel then return
+  if (!clickedEl) return;
 
   //removing default hover
   allOptions.forEach(option =>
@@ -103,9 +108,14 @@ parentOption.addEventListener('click', e => {
   );
   //adding hover to clicked element
 
-  //making sure if clicked on the parent element nothing happend
-  // if element is not clickedel then return
-  if (!clickedEl) return;
-
   clickedEl.classList.add('operations__tab--active');
+
+  //only showing clicked one
+  info.forEach(hide => hide.classList.remove('operations__content--active'));
+
+  //Activating content area
+  const dataToShow = document.querySelector(
+    `.operations__content--${clickedEl.dataset.tab}`
+  );
+  dataToShow.classList.add('operations__content--active');
 });
