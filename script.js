@@ -88,3 +88,19 @@ nav.addEventListener('click', function (e) {
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
 });
+
+//cpmponent
+const parentOption = document.querySelector('.operations__tab-container');
+const allOptions = document.querySelectorAll('.operations__tab');
+
+parentOption.addEventListener('click', e => {
+  //making sure that even i click on span elemnet it registers as ckick on parent element
+  const clickedEl = e.target.closest('.operations__tab');
+
+  console.log(clickedEl);
+  // //removing default hover
+  // allOptions.forEach(option =>
+  //   option.classList.remove('operations__tab--active')
+  // );
+  // //adding hover to clicked element
+});
