@@ -209,9 +209,42 @@ allimgwithlazyload.forEach(img => imglazy.observe(img));
 
 //implimenting slider
 const sliders = document.querySelectorAll('.slide');
-
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
+//record of current slide
 let currentSlide = 0;
 
+//slide positioningon start
 sliders.forEach((slide, i) => {
   slide.style.transform = `translateX(${100 * i}%)`;
 });
+
+//event listner on start
+btnRight.addEventListener('click', () => {
+  if (sliders.length - 1 <= currentSlide) {
+    currentSlide = 0;
+  }
+  //btn clicked so we have to update slide
+  else {
+    currentSlide++;
+  }
+
+  //making the next element that we have to display translateX to 0 and previous one -100
+  sliders.forEach((slide, i) => {
+    slide.style.transform = `translateX(${100 * (i - currentSlide)}%)`;
+  });
+});
+
+btnLeft.addEventListener('click', () => {
+  if (!currentSlide) {
+    currentSlide = sliders.length - 1;
+  } else {
+    currentSlide--;
+  }
+  //making the next element that we have to display translateX to 0 and previous one -100
+  sliders.forEach((slide, i) => {
+    slide.style.transform = `translateX(${100 * (i - currentSlide)}%)`;
+  });
+});
+
+//active slide have to be 0 % and next slide 100% and previous has to be -100%
