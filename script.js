@@ -177,7 +177,7 @@ const options2 = {
 const revilOnScroll = new IntersectionObserver(reveling, options2);
 
 sections.forEach(section => {
-  section.classList.add('section--hidden');
+  //section.classList.add('section--hidden');
   revilOnScroll.observe(section);
 });
 
@@ -206,3 +206,12 @@ const options3 = {
 const imglazy = new IntersectionObserver(imgload, options3);
 
 allimgwithlazyload.forEach(img => imglazy.observe(img));
+
+//implimenting slider
+const sliders = document.querySelectorAll('.slide');
+
+let currentSlide = 0;
+
+sliders.forEach((slide, i) => {
+  slide.style.transform = `translateX(${100 * i}%)`;
+});
