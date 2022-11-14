@@ -137,3 +137,48 @@ const fadeAni = function (e) {
 };
 navCon.addEventListener('mouseover', fadeAni.bind(0.5));
 navCon.addEventListener('mouseout', fadeAni.bind(1));
+
+//sticky nave bar
+const header = document.querySelector('.header');
+const sticky = function (entries, object) {
+  const [entrie] = entries;
+  if (!entrie.isIntersecting) {
+    navCon.classList.add('sticky');
+  } else {
+    navCon.classList.remove('sticky');
+  }
+};
+const options = {
+  root: null,
+  threshold: 0,
+  rootMargin: '-90px',
+};
+const navObserver = new IntersectionObserver(sticky, options);
+navObserver.observe(header);
+
+//scroll effect
+//selecting all the section and appling the effect
+const sections = document.querySelectorAll('.section');
+
+const reveling = function (entries, object) {
+  const [entrie] = entries;
+
+  if (!entrie.isIntersecting) return;
+  entrie.target.classList.remove('section--hidden');
+  // observe.unobserve(entrie.target);
+};
+
+const options2 = {
+  root: null,
+  threshold: 0.3,
+};
+
+//creating a observer
+const revilOnScroll = new IntersectionObserver(reveling, options2);
+
+sections.forEach(section => {
+  section.classList.add('section--hidden');
+  revilOnScroll.observe(section);
+});
+
+
