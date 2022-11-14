@@ -181,4 +181,28 @@ sections.forEach(section => {
   revilOnScroll.observe(section);
 });
 
+// lazy loding the img
 
+const allimgwithlazyload = document.querySelectorAll('.lazy-img');
+
+const imgload = function (entries, object) {
+  const [entrie] = entries;
+
+  if (!entrie.isIntersecting) return;
+  entrie.target.src = entrie.target.dataset.src;
+
+  entrie.target.addEventListener('load', () => {
+    entrie.target.classList.remove('lazy-img');
+  });
+
+  imglazy.unobserve(entrie.target);
+};
+
+const options3 = {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px',
+};
+const imglazy = new IntersectionObserver(imgload, options3);
+
+allimgwithlazyload.forEach(img => imglazy.observe(img));
