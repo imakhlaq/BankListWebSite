@@ -219,8 +219,7 @@ sliders.forEach((slide, i) => {
   slide.style.transform = `translateX(${100 * i}%)`;
 });
 
-//event listner on start
-btnRight.addEventListener('click', () => {
+const nextSlide = function () {
   if (sliders.length - 1 <= currentSlide) {
     currentSlide = 0;
   }
@@ -233,9 +232,9 @@ btnRight.addEventListener('click', () => {
   sliders.forEach((slide, i) => {
     slide.style.transform = `translateX(${100 * (i - currentSlide)}%)`;
   });
-});
+};
 
-btnLeft.addEventListener('click', () => {
+const previousSlide = function () {
   if (!currentSlide) {
     currentSlide = sliders.length - 1;
   } else {
@@ -245,6 +244,17 @@ btnLeft.addEventListener('click', () => {
   sliders.forEach((slide, i) => {
     slide.style.transform = `translateX(${100 * (i - currentSlide)}%)`;
   });
-});
+};
+
+//event listner on start
+btnRight.addEventListener('click', nextSlide);
+
+btnLeft.addEventListener('click', previousSlide);
 
 //active slide have to be 0 % and next slide 100% and previous has to be -100%
+
+//on arroe keys
+document.addEventListener('keydown', e => {
+  if (e.key == 'ArrowLeft') previousSlide();
+  if (e.key == 'ArrowRight') nextSlide();
+});
